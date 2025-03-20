@@ -48,3 +48,12 @@ Acesse no navegador:
  Funcionalidades
 
  Criar, editar e excluir consultas odontológicas Integração com banco de dados Oracle API documentada com Swagger Health Check para monitoramento da aplicação.
+
+
+Integrantes do grupo
+Nome: Eduardo Rodrigues Shiraga
+RM: 553705
+Nome: Giovani Shiraishi Borba
+RM: 553724
+Nome: Matheus Rodrigo da Silva
+RM: 553180
