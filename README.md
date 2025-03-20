@@ -47,8 +47,4 @@ Acesse no navegador:
 
  Funcionalidades
 
- Criar, editar e excluir consultas odontológicas Integração com banco de dados Oracle API documentada com Swagger Health Check para monitoramento da aplicação
-
-🤝 Contribuição
-
-Se quiser contribuir, faça um fork do projeto e abra um pull request. Qualquer dúvida, entre em contato!
+ Criar, editar e excluir consultas odontológicas Integração com banco de dados Oracle API documentada com Swagger Health Check para monitoramento da aplicação.
