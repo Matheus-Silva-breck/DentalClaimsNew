@@ -15,6 +15,33 @@ namespace DentalClaims.Controllers
             var appointments = await _context.Appointments.ToListAsync();
             return View(appointments);
         }
+        // GET: Delete confirmation (opcional)
+        public async Task<IActionResult> Delete(int id)
+    {
+            var appointment = await _context.Appointments.FindAsync(id);
+             if (appointment == null)
+    {
+             return NotFound();
+    }
+
+    return View(appointment);
+    }
+
+        // POST: Delete
+[HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> DeleteConfirmed(int id)
+{
+    var appointment = await _context.Appointments.FindAsync(id);
+    if (appointment != null)
+    {
+        _context.Appointments.Remove(appointment);
+        await _context.SaveChangesAsync();
+    }
+
+    return RedirectToAction(nameof(Index));
+}
+
 
         // GET: Create 
         public IActionResult Create()

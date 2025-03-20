@@ -19,8 +19,14 @@
                 <td>@appointment.Data.ToShortDateString()</td>
                 <td>@appointment.Procedimento</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@appointment.Id" class="btn btn-primary">Editar</a>
-                </td>
+    <a asp-action="Edit" asp-route-id="@appointment.Id" class="btn btn-primary" style="display: inline-block; margin-right: 5px;">Editar</a>
+    <form asp-action="DeleteConfirmed" method="post" style="display: inline-block;">
+        <input type="hidden" name="id" value="@appointment.Id" />
+        <button type="submit" class="btn btn-danger">Excluir</button>
+    </form>
+</td>
+
+
             </tr>
         }
     </tbody>

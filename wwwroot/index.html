@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Pacientes</title>
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid black; padding: 8px; text-align: center; }
+        th { background-color: #f2f2f2; }
+        button { padding: 5px 10px; margin: 2px; cursor: pointer; border: none; font-size: 14px; }
+        .edit-btn { background-color: blue; color: white; }
+        .delete-btn { background-color: red; color: white; }
+    </style>
+</head>
+<body>
+
+    <h2>Consultas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome do Paciente</th>
+                <th>Data</th>
+                <th>Procedimento</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="appointments-list"></tbody>
+    </table>
+
+    <script>
+        const apiUrl = "http://localhost:5000/api/appointments";
+
+        // Função para carregar os agendamentos
+        async function loadAppointments() {
+            const response = await fetch(apiUrl);
+            const appointments = await response.json();
+            const list = document.getElementById("appointments-list");
+            list.innerHTML = "";
+            appointments.forEach(appt => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${appt.patientName}</td>
+                    <td>${appt.date}</td>
+                    <td>${appt.description}</td>
+                    <td>
+                        <button class="edit-btn">Editar</button>
+                        <button class="delete-btn" onclick="deleteAppointment(${appt.id})">Excluir</button>
+                    </td>
+                `;
+                list.appendChild(row);
+            });
+        }
+
+        // Função para excluir um agendamento
+        async function deleteAppointment(id) {
+            if (confirm("Tem certeza que deseja excluir esta consulta?")) {
+                await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+                alert("Consulta excluída!");
+                loadAppointments();
+            }
+        }
+
+        // Carregar lista ao abrir a página
+        loadAppointments();
+    </script>
+
+</body>
+</html>
